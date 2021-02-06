@@ -1,24 +1,61 @@
-button{
-    height: 50px;
-    width: 50px;
-    margin-left: 5px;
-    
-    
-
+button {
+    width: 70px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #DADCE0;
+    cursor: pointer;
+    border: none;
 }
-#answer{
-    height: 44px;
-    display: block;
-    float: left;
-    text-align: left;
-}
-div{
-    height: 60px;
-    padding-top: 10px;
+button:hover{
+    background-color: #EFEFEF;
 }
 
-.inputs{
-    height: 21px;
+button:active{
+    background-color: #EFEFEF;
+    border: solid #CAC6C6 1px;
+    
+}
+
+
+.TextBox{
+    width: 566px;
+    height: 80px;
+    border: none;
+    outline: none;
+    font-family: arial,sans-serif;
+    font-weight: bold;
+    font-size: 14pt;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-left: 11px;
+    border: solid #CAC6C6 1px;
     padding-top: 0px;
     
+}
+.TextBox:focus{
+    border: solid #2B99FF 2px;
+}
+div{
+    margin-top: 10px;
+}
+p{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.ButtonIs{
+    background-color: #FFBA35;
+}
+.ButtonIs:hover{
+    background-color: #FFD179;
+}
+.CLRButton{
+    background-color: #F24C4C;
+}
+.CLRButton:hover{
+    background-color: #FF8484;
 }
