@@ -1,6 +1,24 @@
 button{
     height: 50px;
     width: 50px;
-    margin-top: 20px;
-    margin-left: 300px;
+    margin-left: 5px;
+    
+    
+
+}
+#answer{
+    height: 44px;
+    display: block;
+    float: left;
+    text-align: left;
+}
+div{
+    height: 60px;
+    padding-top: 10px;
+}
+
+.inputs{
+    height: 21px;
+    padding-top: 0px;
+    
 }
