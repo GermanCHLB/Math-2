@@ -21,7 +21,10 @@ let Num9 = document.querySelector('.Num9');
 let Num0 = document.querySelector('.Num0');
 let Num00 = document.querySelector('.Num00');
 let Point = document.querySelector('.Point');
-
+let TextBox = document.querySelector('.TextBox');
+TextBox.textChanged = function () {
+    s = TextBox.value;
+}
 
 
 //проверяем, можно ли убрать 0
@@ -162,7 +165,23 @@ ButtonIs.onclick = function() {
     }  
 }
 
-
+//смена темы
+let body = document.querySelector(".page");;
+let ThemeChangeButton = document.getElementById("ThemeChangeButton");
+let ThemeChangeImg = document.getElementById("ThemeChangeImg"); 
+let k=1;
+ThemeChangeButton.onclick = function() {
+    if (k == 0){
+        body.classList.remove('night-theme');
+        ThemeChangeImg.src = "moon.svg";
+        k=1;
+    }
+    else{
+        body.classList.add('night-theme');
+        ThemeChangeImg.src = "day.svg";
+        k=0;
+    }
+}
 
 
 
