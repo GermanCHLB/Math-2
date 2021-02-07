@@ -18,6 +18,12 @@ button:active{
     
 }
 
+header{
+    height: 50px;
+    margin: 0;
+    
+ 
+}
 
 .TextBox{
     width: 566px;

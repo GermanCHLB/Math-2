@@ -178,6 +178,7 @@ MultiplicationButton.onclick = function() {
 // равно
 
 ButtonIs.onclick = function() {
+    s = TextBox.value;
     if (s.indexOf("+") != -1){
         s=parseFloat(s.slice(0, s.indexOf("+"))) + parseFloat(s.slice(s.indexOf("+")+1, s.lenght));
         document.querySelector('.TextBox').value = s;
