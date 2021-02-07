@@ -20,7 +20,7 @@ let Num8 = document.querySelector('.Num8');
 let Num9 = document.querySelector('.Num9');
 let Num0 = document.querySelector('.Num0');
 let Num00 = document.querySelector('.Num00');
-let Point = document.querySelector('.Point');
+let PointButton = document.querySelector('.PointButton');
 let TextBox = document.querySelector('.TextBox');
 TextBox.textChanged = function () {
     s = TextBox.value;
@@ -93,6 +93,41 @@ Num00.onclick = function(){
         document.querySelector('.TextBox').value = s;}}//00
 
 
+function CheckPoint(s){
+    if (s.indexOf("+")!=-1){
+        s2 = s.slice(s.indexOf("+"), s.length-1);
+        if (s2.indexOf(".") == -1){
+            return(true);
+        }
+    } else if (s.indexOf("-")!=-1){
+        s2 = s.slice(s.indexOf("-"), s.length-1);
+        if (s2.indexOf(".") == -1){
+            return(true);
+        }
+    } else if (s.indexOf("*")!=-1){
+        s2 = s.slice(s.indexOf("*"), s.length-1);
+        if (s2.indexOf(".") == -1){
+            return(true);
+        }
+    } else if (s.indexOf("/")!=-1){
+        s2 = s.slice(s.indexOf("/"), s.length-1);
+        if (s2.indexOf(".") == -1){
+            return(true);
+        }
+    } else if (s.indexOf(".") == -1){
+        return(true);
+}
+}
+
+
+PointButton.onclick = function() {
+    if (CheckPoint(s)){
+        s+=".";
+        document.querySelector('.TextBox').value = s;
+    }    
+}
+
+
 CLRButton.onclick = function() {
     s="";
     document.querySelector('.TextBox').value = s;
@@ -144,22 +179,22 @@ MultiplicationButton.onclick = function() {
 
 ButtonIs.onclick = function() {
     if (s.indexOf("+") != -1){
-        s=parseInt(s.slice(0, s.indexOf("+"))) + parseInt(s.slice(s.indexOf("+")+1, s.lenght));
+        s=parseFloat(s.slice(0, s.indexOf("+"))) + parseFloat(s.slice(s.indexOf("+")+1, s.lenght));
         document.querySelector('.TextBox').value = s;
         s = document.querySelector('.TextBox').value;
     }
     else if (s.indexOf("*") != -1){
-        s=parseInt(s.slice(0, s.indexOf("*"))) * parseInt(s.slice(s.indexOf("*")+1, s.lenght));
+        s=parseFloat(s.slice(0, s.indexOf("*"))) * parseFloat(s.slice(s.indexOf("*")+1, s.lenght));
         document.querySelector('.TextBox').value = s;
         s = document.querySelector('.TextBox').value;
     }
     else if (s.indexOf("-") != -1){
-        s=parseInt(s.slice(0, s.indexOf("-"))) - parseInt(s.slice(s.indexOf("-")+1, s.lenght));
+        s=parseFloat(s.slice(0, s.indexOf("-"))) - parseFloat(s.slice(s.indexOf("-")+1, s.lenght));
         document.querySelector('.TextBox').value = s;
         s = document.querySelector('.TextBox').value;
     }  
     else if (s.indexOf("/") != -1 && s.slice(s.indexOf("/")+1, s.lenght)!="0" ){
-        s=parseInt(s.slice(0, s.indexOf("/"))) / parseInt(s.slice(s.indexOf("/")+1, s.lenght));
+        s=parseFloat(s.slice(0, s.indexOf("/"))) / parseFloat(s.slice(s.indexOf("/")+1, s.lenght));
         document.querySelector('.TextBox').value = s;
         s = document.querySelector('.TextBox').value;
     }  
