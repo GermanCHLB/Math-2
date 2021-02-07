@@ -1,0 +1,157 @@
+button {
+    width: 70px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #DADCE0;
+    cursor: pointer;
+    border: none;
+}
+button:hover{
+    background-color: #EFEFEF;
+}
+
+button:active{
+    background-color: #EFEFEF;
+    border: solid #CAC6C6 1px;
+    
+}
+
+header{
+    height: 50px;
+    margin: 0;
+    
+ 
+}
+
+.TextBox{
+    width: 566px;
+    height: 80px;
+    border: none;
+    outline: none;
+    font-family: arial,sans-serif;
+    font-size: 16pt;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-left: 11px;
+    border: solid #CAC6C6 1px;
+    padding-top: 0px;
+    
+}
+.TextBox:focus{
+    border: solid #2B99FF 2px;
+}
+div{
+    margin-top: 10px;
+}
+p{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.ButtonIs{
+    background-color: #FFBA35;
+}
+.ButtonIs:hover{
+    background-color: #FFD179;
+}
+.CLRButton{
+    background-color: #F24C4C;
+}
+.CLRButton:hover{
+    background-color: #FF8484;
+}
+.MainCalc{
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    display: inline-block;}
+.MultiplicationButton p{
+    transform: rotate(45deg);
+}
+
+
+
+
+
+
+.night-theme{
+    background-color: black;
+}
+
+.night-theme button{
+    width: 70px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #3d3d3d;
+    cursor: pointer;
+    border: solid rgba(48, 40, 40, 0.356) 1px;
+    color: white;
+}
+.night-theme button:hover{
+    background-color: #242424;
+}
+
+.night-theme button:active{
+    background-color: #202020;
+    border: solid #000000 1px;
+    
+}
+
+
+.night-theme .TextBox{
+    width: 566px;
+    height: 80px;
+    border: solid rgba(252, 252, 252, 0.151) 1px;
+    outline: none;
+    font-family: arial,sans-serif;
+    font-size: 16pt;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-left: 11px;
+    color: white;
+    padding-top: 0px;
+    background-color: black;}
+
+
+.night-theme .ButtonIs:hover{
+    background-color: #e9a934;
+}
+
+.night-theme .CLRButton:hover{
+    background-color: #be5d5d;
+}
+
+.night-theme .ButtonIs{
+    background-color: #fdbe3fd2;
+}
+
+.night-theme .CLRButton{
+    background-color: #f24c4cb0;
+}
+#ThemeChangeButton{
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: block;
+    float: right;
+    background-color:white;
+}
+.night-theme #ThemeChangeButton{
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: block;
+    float: right;
+    background-color:black;
+}
+#ThemeChangeImg{
+    width: 35px;
+    height: 35px;
+}
