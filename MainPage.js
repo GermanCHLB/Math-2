@@ -1,4 +1,5 @@
-//объявляем переменные
+//#region объявляем переменные
+
 let s = document.querySelector('.TextBox').value;
 let ButtonIs = document.querySelector('.ButtonIs');
 let CLRButton = document.querySelector('.CLRButton');
@@ -25,7 +26,10 @@ let TextBox = document.querySelector('.TextBox');
 TextBox.textChanged = function () {
     s = TextBox.value;
 }
+//#endregion 
 
+
+//#region разные функции
 
 //проверяем, можно ли убрать 0
 function check0(s) {
@@ -33,12 +37,7 @@ function check0(s) {
         return(true);    
     }
     else{
-        return(false);
-    }
-}
-
-
-
+        return(false);}}
 //добавляем цифру в зависимости от 0
 function ChangeS(s, n) {
     if (check0(s)){
@@ -47,57 +46,13 @@ function ChangeS(s, n) {
         return(s);} 
     else{
         s+=String(n);
-        return(s);}
-}
-
-
-
-//прописываем кнопки
-Num1.onclick = function(){
-    s=ChangeS(s, 1);
-    document.querySelector('.TextBox').value = s;}//1
-Num2.onclick = function(){
-    s=ChangeS(s, 2);
-    document.querySelector('.TextBox').value = s;}//2
-Num3.onclick = function(){
-    s=ChangeS(s, 3);
-    document.querySelector('.TextBox').value = s;}//3
-Num4.onclick = function(){
-    s=ChangeS(s, 4);
-    document.querySelector('.TextBox').value = s;}//4
-Num5.onclick = function(){
-    s=ChangeS(s, 5);
-    document.querySelector('.TextBox').value = s;}//5
-Num6.onclick = function(){
-    s=ChangeS(s, 6);
-    document.querySelector('.TextBox').value = s;}//6
-Num7.onclick = function(){
-    s=ChangeS(s, 7);
-    document.querySelector('.TextBox').value = s;}//7
-Num8.onclick = function(){
-    s=ChangeS(s, 8);
-    document.querySelector('.TextBox').value = s;}//8
-Num9.onclick = function(){
-    s=ChangeS(s, 9);
-    document.querySelector('.TextBox').value = s;}//9
-Num0.onclick = function(){
-    if (s[s.length-1]=="0" && s.length==1 || s[s.length-1]=="0" && s[s.length-2]=="+" || s[s.length-1]=="0" && s[s.length-2]=="-" || s[s.length-1]=="0" && s[s.length-2]=="*" || s[s.length-1]=="0" && s[s.length-2]=="/"){} 
-    else{
-        s+="0";
-        document.querySelector('.TextBox').value = s;}}//0
-
-Num00.onclick = function(){
-    if (s[s.length-1]=="0" && s.length==1 || s[s.length-1]=="0" && s[s.length-2]=="+" || s[s.length-1]=="0" && s[s.length-2]=="-" || s[s.length-1]=="0" && s[s.length-2]=="*" || s[s.length-1]=="0" && s[s.length-2]=="/" || s.length==0 || s[s.length-1]=="+" || s[s.length-1]=="*" || s[s.length-1]=="-" || s[s.length-1]=="/"){} 
-    else{
-        s+="00";
-        document.querySelector('.TextBox').value = s;}}//00
-
-
+        return(s);}}
+//что-то делает
 function CheckPoint(s){
     if (s.indexOf("+")!=-1){
         s2 = s.slice(s.indexOf("+"), s.length-1);
         if (s2.indexOf(".") == -1){
-            return(true);
+                    return(true);
         }
     } else if (s.indexOf("-")!=-1){
         s2 = s.slice(s.indexOf("-"), s.length-1);
@@ -116,28 +71,8 @@ function CheckPoint(s){
         }
     } else if (s.indexOf(".") == -1){
         return(true);
+    }
 }
-}
-
-
-PointButton.onclick = function() {
-    if (CheckPoint(s)){
-        s+=".";
-        document.querySelector('.TextBox').value = s;
-    }    
-}
-
-
-CLRButton.onclick = function() {
-    s="";
-    document.querySelector('.TextBox').value = s;
-}//CLR
-DELButton.onclick = function() {
-    s=TextBox.value;
-    s=s.slice(0, s.length-1);
-    document.querySelector('.TextBox').value = s;
-}//DEL
-
 //проверка на наличие +/-/*/ /
 function check(s) {
     if (s.indexOf("+") == -1 && s.indexOf("*")==-1 && s.indexOf("/") == -1 && s.indexOf("*") == -1){
@@ -147,29 +82,107 @@ function check(s) {
         return(0);
     }
 }
-//-
-SubtractionButton.onclick = function() {
-    s+="-";
-    document.querySelector('.TextBox').value = s;
-}
-// / 
-DivisionButton.onclick = function() {
-    s+="/";
-    document.querySelector('.TextBox').value = s;
-}
-// +
-AdditionButton.onclick = function() {
-    s+="+";
-    document.querySelector('.TextBox').value = s;
-}
-// *
-MultiplicationButton.onclick = function() {
-    s+="*";
-    document.querySelector('.TextBox').value = s;
-}
 
-// равно
+//#endregion разные функции
 
+
+//#region кнопки калькулятора
+    Num1.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 1);
+        document.querySelector('.TextBox').value = s;}//1
+    Num2.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 2);
+        document.querySelector('.TextBox').value = s;}//2
+    Num3.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 3);
+        document.querySelector('.TextBox').value = s;}//3
+    Num4.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 4);
+        document.querySelector('.TextBox').value = s;}//4
+    Num5.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 5);
+        document.querySelector('.TextBox').value = s;}//5
+    Num6.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 6);
+        document.querySelector('.TextBox').value = s;}//6
+    Num7.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 7);
+        document.querySelector('.TextBox').value = s;}//7
+    Num8.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 8);
+        document.querySelector('.TextBox').value = s;}//8
+    Num9.onclick = function(){
+        s = TextBox.value;
+        s=ChangeS(s, 9);
+        document.querySelector('.TextBox').value = s;}//9
+    Num0.onclick = function(){
+        s = TextBox.value;
+        if (s[s.length-1]=="0" && s.length==1 || s[s.length-1]=="0" && s[s.length-2]=="+" || s[s.length-1]=="0" && s[s.length-2]=="-" || s[s.length-1]=="0" && s[s.length-2]=="*" || s[s.length-1]=="0" && s[s.length-2]=="/"){} 
+        else{
+            s+="0";
+            document.querySelector('.TextBox').value = s;}}//0
+
+    Num00.onclick = function(){
+        s = TextBox.value;
+        if (s[s.length-1]=="0" && s.length==1 || s[s.length-1]=="0" && s[s.length-2]=="+" || s[s.length-1]=="0" && s[s.length-2]=="-" || s[s.length-1]=="0" && s[s.length-2]=="*" || s[s.length-1]=="0" && s[s.length-2]=="/" || s.length==0 || s[s.length-1]=="+" || s[s.length-1]=="*" || s[s.length-1]=="-" || s[s.length-1]=="/"){} 
+        else{
+            s+="00";
+            document.querySelector('.TextBox').value = s;}}//00
+
+    PointButton.onclick = function() {
+        s = TextBox.value;
+        if (CheckPoint(s)){
+        s+=".";
+        document.querySelector('.TextBox').value = s;}}//.
+
+    CLRButton.onclick = function() {
+        s="";
+        document.querySelector('.TextBox').value = s;}//CLR
+
+    DELButton.onclick = function() {
+        s=TextBox.value;
+        s=s.slice(0, s.length-1);
+        document.querySelector('.TextBox').value = s;}//DEL
+
+    SubtractionButton.onclick = function() {
+        s = TextBox.value;
+        s+="-";
+        document.querySelector('.TextBox').value = s;
+    } // -
+    
+    DivisionButton.onclick = function() {
+        s = TextBox.value;
+        s+="/";
+        document.querySelector('.TextBox').value = s;
+    }// /
+    
+    AdditionButton.onclick = function() {
+        s = TextBox.value;
+        s+="+";
+        document.querySelector('.TextBox').value = s;
+    } // +
+    
+    MultiplicationButton.onclick = function() {
+        s = TextBox.value;
+        s+="*";
+        document.querySelector('.TextBox').value = s;
+    } // * 
+    
+
+
+
+//#endregion кнопки калькулятора
+
+
+//#region  равно
 ButtonIs.onclick = function() {
     s = TextBox.value;
     function pos(s) {
@@ -371,13 +384,38 @@ ButtonIs.onclick = function() {
                     break
                 }
             } else if (s[check(s.slice(1,))+1]=="*"){
-                if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")>1){
+                if (count(s, "+") + count(s, "*") + count(s, "-") + count(s, "/")>1){
                     multiPos = s.indexOf("*");
                     multiPos1 = multiPos+1;
-                    a = parseFloat(s.slice(0, multiPos));
-                    b = parseFloat(s.slice(multiPos1, pos(s.slice(multiPos1,)) + (s.length - (s.slice(multiPos1,)).length)));
-                    c = s.slice(pos(s.slice(multiPos1,)) + (s.length - (s.slice(multiPos1,)).length),);
-                    s = String(a*b) + c;
+                    if (s.slice(1, multiPos).indexOf("+") == -1 && s.slice(1, multiPos).indexOf("-") == -1){
+                        a = parseFloat(s.slice(0, multiPos));
+                        c1 = "";
+                        if (s.slice(multiPos1+1,).indexOf("+")==-1 && s.slice(multiPos1+1,).indexOf("/")==-1 && s.slice(multiPos1+1,).indexOf("*")==-1 && s.slice(multiPos1+1,).indexOf("-")==-1 ){
+                            b = parseFloat(s.slice(multiPos1,))
+                            c2 = ""
+                            
+                        } else{
+                            n = s.length - s.slice(multiPos1,).length;
+                            b = parseFloat(s.slice(multiPos1, pos(s.slice(multiPos1,)) + n));
+                            c2 = s.slice(pos(s.slice(multiPos1,)) + n,);
+                            
+                        }
+                    } else{
+                        a = parseFloat(s.slice(backfind(s.slice(0, multiPos)) + 1, multiPos));
+                        c1 = s.slice(0, backfind(s.slice(0, multiPos-1)) + 1)
+                        
+                        if (s.slice(multiPos1+1,).indexOf("+")==-1 && s.slice(multiPos1+1,).indexOf("/")==-1 && s.slice(multiPos1+1,).indexOf("*")==-1 && s.slice(multiPos1+1,).indexOf("-")==-1 ){
+                            b = parseFloat(s.slice(multiPos1,))
+                            c2 = ""    
+                            
+                        } else{
+                            n = s.length - s.slice(multiPos1,).length;
+                            b = parseFloat(s.slice(multiPos1, pos(s.slice(multiPos1,)) + n));
+                            c2 = s.slice(pos(s.slice(multiPos1,)) + n,);
+                            
+                        }
+                    }
+                    s = c1 + String(a * b) + c2
             
                 } else if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")==1){
                     multiPos = s.indexOf("*");
@@ -388,13 +426,39 @@ ButtonIs.onclick = function() {
                     break
                 }
             } else if (s[check(s.slice(1,))+1]=="/"){
-                if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")>1){
+                if (count(s, "+") + count(s, "*") + count(s, "-") + count(s, "/")>1){
                     delPos = s.indexOf("/");
                     delPos1 = delPos+1;
-                    a = parseFloat(s.slice(0, delPos));
-                    b = parseFloat(s.slice(delPos1, pos(s.slice(delPos1,)) + (s.length - (s.slice(delPos1,)).length)));
-                    c = s.slice(pos(s.slice(delPos1,)) + (s.length - (s.slice(delPos1,)).length),);
-                    s = String(a/b) + c;
+                    if (s.slice(1, delPos).indexOf("+") == -1 && s.slice(1, delPos).indexOf("-") == -1){
+                        a = parseFloat(s.slice(0, delPos));
+                        c1 = "";
+                        if (s.slice(delPos1+1,).indexOf("+")==-1 && s.slice(delPos1+1,).indexOf("/")==-1 && s.slice(delPos1+1,).indexOf("*")==-1 && s.slice(delPos1+1,).indexOf("-")==-1 ){
+                            b = parseFloat(s.slice(delPos1,))
+                            c2 = ""
+                            
+                        } else{
+                            n = s.length - s.slice(delPos1,).length;
+                            b = parseFloat(s.slice(delPos1, pos(s.slice(delPos1,)) + n));
+                            c2 = s.slice(pos(s.slice(delPos1,)) + n,);
+                            
+                        }
+                    } else{
+                        a = parseFloat(s.slice(backfind(s.slice(0, delPos)) + 1, delPos));
+                        c1 = s.slice(0, backfind(s.slice(0, delPos-1)) + 1)
+                        
+                        if (s.slice(delPos1+1,).indexOf("+")==-1 && s.slice(delPos1+1,).indexOf("/")==-1 && s.slice(delPos1+1,).indexOf("*")==-1 && s.slice(delPos1+1,).indexOf("-")==-1 ){
+                            b = parseFloat(s.slice(delPos1,))
+                            c2 = ""    
+                            
+                        } else{
+                            n = s.length - s.slice(delPos1,).length;
+                            b = parseFloat(s.slice(delPos1, pos(s.slice(delPos1,)) + n));
+                            c2 = s.slice(pos(s.slice(delPos1,)) + n,);
+                            
+                            
+                        }
+                    }
+                    s = c1 + String(a / b) + c2
             
                 } else if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")==1){
                     delPos = s.indexOf("/");
@@ -426,8 +490,10 @@ ButtonIs.onclick = function() {
     }
     document.querySelector('.TextBox').value = s;
 }
+//#endregion равно
 
-//смена темы
+
+//#region смена темы
 let body = document.querySelector(".page");;
 let ThemeChangeButton = document.getElementById("ThemeChangeButton");
 let ThemeChangeImg = document.getElementById("ThemeChangeImg"); 
@@ -444,8 +510,4 @@ ThemeChangeButton.onclick = function() {
         k=0;
     }
 }
-
-
-
-
-
+//#endregion смена темы

@@ -1,4 +1,4 @@
-s = "2/3+3/2+3*2";
+s = "-1+12/4 - 100*2";
 function pos(s) {
     d = 0;
     for(i=0; i<s.length; i++){
@@ -197,15 +197,41 @@ while (s.length!=1){
                 break
             }
         } else if (s[check(s.slice(1,))+1]=="*"){
-            if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")>1){
+            if (count(s, "+") + count(s, "*") + count(s, "-") + count(s, "/")>1){
                 multiPos = s.indexOf("*");
                 multiPos1 = multiPos+1;
-                a = parseFloat(s.slice(0, multiPos));
-                b = parseFloat(s.slice(multiPos1, pos(s.slice(multiPos1,)) + (s.length - (s.slice(multiPos1,)).length)));
-                c = s.slice(pos(s.slice(multiPos1,)) + (s.length - (s.slice(multiPos1,)).length),);
-                s = String(a*b) + c;
+                if (s.slice(1, multiPos).indexOf("+") == -1 && s.slice(1, multiPos).indexOf("-") == -1){
+                    a = parseFloat(s.slice(0, multiPos));
+                    c1 = "";
+                    if (s.slice(multiPos1+1,).indexOf("+")==-1 && s.slice(multiPos1+1,).indexOf("/")==-1 && s.slice(multiPos1+1,).indexOf("*")==-1 && s.slice(multiPos1+1,).indexOf("-")==-1 ){
+                        b = parseFloat(s.slice(multiPos1,))
+                        c2 = ""
+                        
+                    } else{
+                        n = s.length - s.slice(multiPos1,).length;
+                        b = parseFloat(s.slice(multiPos1, pos(s.slice(multiPos1,)) + n));
+                        c2 = s.slice(pos(s.slice(multiPos1,)) + n,);
+                        
+                    }
+                } else{
+                    a = parseFloat(s.slice(backfind(s.slice(0, multiPos)) + 1, multiPos));
+                    c1 = s.slice(0, backfind(s.slice(0, multiPos-1)) + 1)
+                    
+                    if (s.slice(multiPos1+1,).indexOf("+")==-1 && s.slice(multiPos1+1,).indexOf("/")==-1 && s.slice(multiPos1+1,).indexOf("*")==-1 && s.slice(multiPos1+1,).indexOf("-")==-1 ){
+                        b = parseFloat(s.slice(multiPos1,))
+                        c2 = ""    
+                        
+                    } else{
+                        n = s.length - s.slice(multiPos1,).length;
+                        b = parseFloat(s.slice(multiPos1, pos(s.slice(multiPos1,)) + n));
+                        c2 = s.slice(pos(s.slice(multiPos1,)) + n,);
+                        
+                    }
+                }
+                s = c1 + String(a * b) + c2
+                
         
-            } else if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")==1){
+            } else if (count(s, "+") + count(s, "*") + count(s, "-") + count(s, "/")==1){
                 multiPos = s.indexOf("*");
                 multiPos1 = multiPos+1;
                 a = parseFloat(s.slice(0, multiPos))
@@ -214,15 +240,41 @@ while (s.length!=1){
                 break
             }
         } else if (s[check(s.slice(1,))+1]=="/"){
-            if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")>1){
+            if (count(s, "+") + count(s, "*") + count(s, "-") + count(s, "/")>1){
                 delPos = s.indexOf("/");
                 delPos1 = delPos+1;
-                a = parseFloat(s.slice(0, delPos));
-                b = parseFloat(s.slice(delPos1, pos(s.slice(delPos1,)) + (s.length - (s.slice(delPos1,)).length)));
-                c = s.slice(pos(s.slice(delPos1,)) + (s.length - (s.slice(delPos1,)).length),);
-                s = String(a/b) + c;
+                if (s.slice(1, delPos).indexOf("+") == -1 && s.slice(1, delPos).indexOf("-") == -1){
+                    a = parseFloat(s.slice(0, delPos));
+                    c1 = "";
+                    if (s.slice(delPos1+1,).indexOf("+")==-1 && s.slice(delPos1+1,).indexOf("/")==-1 && s.slice(delPos1+1,).indexOf("*")==-1 && s.slice(delPos1+1,).indexOf("-")==-1 ){
+                        b = parseFloat(s.slice(delPos1,))
+                        c2 = ""
+                        
+                    } else{
+                        n = s.length - s.slice(delPos1,).length;
+                        b = parseFloat(s.slice(delPos1, pos(s.slice(delPos1,)) + n));
+                        c2 = s.slice(pos(s.slice(delPos1,)) + n,);
+                        
+                    }
+                } else{
+                    a = parseFloat(s.slice(backfind(s.slice(0, delPos)) + 1, delPos));
+                    c1 = s.slice(0, backfind(s.slice(0, delPos-1)) + 1)
+                    
+                    if (s.slice(delPos1+1,).indexOf("+")==-1 && s.slice(delPos1+1,).indexOf("/")==-1 && s.slice(delPos1+1,).indexOf("*")==-1 && s.slice(delPos1+1,).indexOf("-")==-1 ){
+                        b = parseFloat(s.slice(delPos1,))
+                        c2 = ""    
+                        
+                    } else{
+                        n = s.length - s.slice(delPos1,).length;
+                        b = parseFloat(s.slice(delPos1, pos(s.slice(delPos1,)) + n));
+                        c2 = s.slice(pos(s.slice(delPos1,)) + n,);
+                        
+                        
+                    }
+                }
+                s = c1 + String(a / b) + c2
         
-            } else if (count(s.slice(1,), "+") + count(s.slice(1,), "*") + count(s.slice(1,), "-") + count(s.slice(1,), "/")==1){
+            } else if (count(s, "+") + count(s, "*") + count(s, "-") + count(s, "/")==1){
                 delPos = s.indexOf("/");
                 delPos1 = delPos+1;
                 a = parseFloat(s.slice(0, delPos))
