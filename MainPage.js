@@ -154,37 +154,59 @@ function check(s) {
 
     SubtractionButton.onclick = function() {
         s = TextBox.value;
-        s+="-";
+        if (s.length==1 && s[0]=="0"){
+            s=""
+            s+="-"
+        } 
+        else if (s[s.length-1] == "-"){}
+        else {s+="-"}
+         
         document.querySelector('.TextBox').value = s;
     } // -
     
     DivisionButton.onclick = function() {
         s = TextBox.value;
-        s+="/";
+        if (s=="" ||  s[s.length-1]=="+" ||  s[s.length-1]=="*" ||  s[s.length-1]=="/" ||  s[s.length-1]=="-"){}
+        else{ s+="/"; }
         document.querySelector('.TextBox').value = s;
     }// /
     
     AdditionButton.onclick = function() {
         s = TextBox.value;
-        s+="+";
+        if (s=="" ||  s[s.length-1]=="+" ||  s[s.length-1]=="*" ||  s[s.length-1]=="/" ||  s[s.length-1]=="-"){}
+        else{ s+="+"; }
         document.querySelector('.TextBox').value = s;
     } // +
     
     MultiplicationButton.onclick = function() {
         s = TextBox.value;
-        s+="*";
+        if (s=="" ||  s[s.length-1]=="+" ||  s[s.length-1]=="*" ||  s[s.length-1]=="/" ||  s[s.length-1]=="-"){}
+        else{ s+="*"; }
         document.querySelector('.TextBox').value = s;
     } // * 
     
+    LeftBracket.onclick = function() {
+        s=TextBox.value;
+        if (s.length==1 && s[0]=="0"){
+            s="("
+        } else if (s == "" || s[s.length-1]=="+" || s[s.length-1]=="*" || s[s.length-1]=="-" || s[s.length-1]=="/"){ s+="(" }
+        document.querySelector('.TextBox').value = s;
 
+    } // (
+
+    RightBracket.onclick = function() {
+        s=TextBox.value;
+        if (s != "" || s[s.length-1]!="+" || s[s.length-1]!="*" || s[s.length-1]!="-" || s[s.length-1]!="/"){ s+=")" }
+        document.querySelector('.TextBox').value = s;
+    } // )
 
 
 //#endregion кнопки калькулятора
 
 
+
 //#region  равно
 ButtonIs.onclick = function() {
-    s = TextBox.value;
     function pos(s) {
         d = 0;
         for(i=0; i<s.length; i++){
@@ -237,7 +259,277 @@ ButtonIs.onclick = function() {
           return(-1)
         }
     }
+    s = TextBox.value;
+    
 
+    //скобки
+    if (s.indexOf("(")!=-1){
+        console.log(1)
+        while (count(s, "(")!=0){
+            s0 = s.slice(0, s.indexOf("("));
+            s1 = s.slice(s.indexOf("(")+1, s.indexOf(")"));
+            s2 = s.slice(s.indexOf(")")+1,);
+            while (s1.length!=1){
+                if (s1[0]!="-"){
+                    if (s1[check(s1)]=="+"){
+                        if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")>1){
+                            plusPos = s1.indexOf("+");
+                            plusPos1 = plusPos+1;
+                            a = parseFloat(s1.slice(0, plusPos));
+                            b = parseFloat(s1.slice(plusPos1, pos(s1.slice(plusPos1,)) + (s1.length - (s1.slice(plusPos1,)).length)));
+                            c = s1.slice(pos(s1.slice(plusPos1,)) + (s1.length - (s1.slice(plusPos1,)).length),);
+                            s1 = String(a + b) + c; 
+                            
+                    
+                        } else if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")==1){
+                            plusPos = s1.indexOf("+");
+                            plusPos1 = plusPos + 1;
+                            a = parseFloat(s1.slice(0, plusPos))
+                            b = parseFloat(s1.slice(plusPos1,))
+                            s1 = a+b
+                            
+                            break
+                        }
+                    } else if (s1[check(s1)]=="*"){
+                        if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")>1){
+                            multiPos = s1.indexOf("*");
+                            multiPos1 = multiPos+1;
+                            if (s1.slice(1, multiPos).indexOf("+") == -1 && s1.slice(1, multiPos).indexOf("-") == -1){
+                                a = parseFloat(s1.slice(0, multiPos));
+                                c1 = "";
+                                if (s1.slice(multiPos1+1,).indexOf("+")==-1 && s1.slice(multiPos1+1,).indexOf("/")==-1 && s1.slice(multiPos1+1,).indexOf("*")==-1 && s1.slice(multiPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(multiPos1,))
+                                    c2 = ""
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(multiPos1,).length;
+                                    b = parseFloat(s1.slice(multiPos1, pos(s1.slice(multiPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(multiPos1,)) + n,);
+                                    
+                                }
+                            } else{
+                                a = parseFloat(s1.slice(backfind(s1.slice(0, multiPos)) + 1, multiPos));
+                                c1 = s1.slice(0, backfind(s1.slice(0, multiPos-1)) + 1)
+                                
+                                if (s1.slice(multiPos1+1,).indexOf("+")==-1 && s1.slice(multiPos1+1,).indexOf("/")==-1 && s1.slice(multiPos1+1,).indexOf("*")==-1 && s1.slice(multiPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(multiPos1,))
+                                    c2 = ""    
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(multiPos1,).length;
+                                    b = parseFloat(s1.slice(multiPos1, pos(s1.slice(multiPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(multiPos1,)) + n,);
+                                    
+                                }
+                            }
+                            s1 = c1 + String(a * b) + c2
+                            
+                    
+                        } else if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")==1){
+                            multiPos = s1.indexOf("*");
+                            multiPos1 = multiPos+1;
+                            a = parseFloat(s1.slice(0, multiPos))
+                            b = parseFloat(s1.slice(multiPos1,))
+                            s1 = a*b
+                            break
+                        }
+                    } else if (s1[check(s1)]=="/"){
+                        if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")>1){
+                            delPos = s1.indexOf("/");
+                            delPos1 = delPos+1;
+                            if (s1.slice(1, delPos).indexOf("+") == -1 && s1.slice(1, delPos).indexOf("-") == -1){
+                                a = parseFloat(s1.slice(0, delPos));
+                                c1 = "";
+                                if (s1.slice(delPos1+1,).indexOf("+")==-1 && s1.slice(delPos1+1,).indexOf("/")==-1 && s1.slice(delPos1+1,).indexOf("*")==-1 && s1.slice(delPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(delPos1,))
+                                    c2 = ""
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(delPos1,).length;
+                                    b = parseFloat(s1.slice(delPos1, pos(s1.slice(delPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(delPos1,)) + n,);
+                                    
+                                }
+                            } else{
+                                a = parseFloat(s1.slice(backfind(s1.slice(0, delPos)) + 1, delPos));
+                                c1 = s1.slice(0, backfind(s1.slice(0, delPos-1)) + 1)
+                                
+                                if (s1.slice(delPos1+1,).indexOf("+")==-1 && s1.slice(delPos1+1,).indexOf("/")==-1 && s1.slice(delPos1+1,).indexOf("*")==-1 && s1.slice(delPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(delPos1,))
+                                    c2 = ""    
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(delPos1,).length;
+                                    b = parseFloat(s1.slice(delPos1, pos(s1.slice(delPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(delPos1,)) + n,);
+                                    
+                                    
+                                }
+                            }
+                            s1 = c1 + String(a / b) + c2
+                    
+                        } else if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")==1){
+                            delPos = s1.indexOf("/");
+                            delPos1 = delPos+1;
+                            a = parseFloat(s1.slice(0, delPos))
+                            b = parseFloat(s1.slice(delPos1,))
+                            s1 = a/b
+                            break
+                        }
+                    } else if (s1[check(s1)]=="-"){
+                        if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")>1){
+                            minusPos = s1.indexOf("-");
+                            minusPos1 = minusPos+1;
+                            a = parseFloat(s1.slice(0, minusPos));
+                            b = parseFloat(s1.slice(minusPos1, pos(s1.slice(minusPos1,)) + (s1.length - (s1.slice(minusPos1,)).length)));
+                            c = s1.slice(pos(s1.slice(minusPos1,)) + (s1.length - (s1.slice(minusPos1,)).length),);
+                            s1 = String(a-b) + c;
+                    
+                        } else if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")==1){
+                            minusPos = s1.indexOf("-");
+                            minusPos1 = minusPos+1;
+                            a = parseFloat(s1.slice(0, minusPos))
+                            b = parseFloat(s1.slice(minusPos1,))
+                            s1 = a-b
+                            break
+                        }
+                    }
+                } else{
+                    if (s1[check(s1.slice(1,))+1]=="+"){
+                        if (count(s1.slice(1,), "+") + count(s1.slice(1,), "*") + count(s1.slice(1,), "-") + count(s1.slice(1,), "/")>1){
+                            plusPos = s1.indexOf("+");
+                            plusPos1 = plusPos+1;
+                            a = parseFloat(s1.slice(0, plusPos));
+                            b = parseFloat(s1.slice(plusPos1, pos(s1.slice(plusPos1,)) + (s1.length - (s1.slice(plusPos1,)).length)));
+                            c = s1.slice(pos(s1.slice(plusPos1,)) + (s1.length - (s1.slice(plusPos1,)).length),);
+                            s1 = String(a + b) + c;
+                            console.log(s1);
+                    
+                        } else if (count(s1.slice(1,), "+") + count(s1.slice(1,), "*") + count(s1.slice(1,), "-") + count(s1.slice(1,), "/")==1){
+                            plusPos = s1.indexOf("+");
+                            plusPos1 = plusPos + 1;
+                            a = parseFloat(s1.slice(0, plusPos))
+                            b = parseFloat(s1.slice(plusPos1,))
+                            s1 = a+b
+                            console.log(s1);
+                            break
+                        }
+                    } else if (s1[check(s1.slice(1,))+1]=="*"){
+                        if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")>1){
+                            multiPos = s1.indexOf("*");
+                            multiPos1 = multiPos+1;
+                            if (s1.slice(1, multiPos).indexOf("+") == -1 && s1.slice(1, multiPos).indexOf("-") == -1){
+                                a = parseFloat(s1.slice(0, multiPos));
+                                c1 = "";
+                                if (s1.slice(multiPos1+1,).indexOf("+")==-1 && s1.slice(multiPos1+1,).indexOf("/")==-1 && s1.slice(multiPos1+1,).indexOf("*")==-1 && s1.slice(multiPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(multiPos1,))
+                                    c2 = ""
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(multiPos1,).length;
+                                    b = parseFloat(s1.slice(multiPos1, pos(s1.slice(multiPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(multiPos1,)) + n,);
+                                    
+                                }
+                            } else{
+                                a = parseFloat(s1.slice(backfind(s1.slice(0, multiPos)) + 1, multiPos));
+                                c1 = s1.slice(0, backfind(s1.slice(0, multiPos-1)) + 1)
+                                
+                                if (s1.slice(multiPos1+1,).indexOf("+")==-1 && s1.slice(multiPos1+1,).indexOf("/")==-1 && s1.slice(multiPos1+1,).indexOf("*")==-1 && s1.slice(multiPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(multiPos1,))
+                                    c2 = ""    
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(multiPos1,).length;
+                                    b = parseFloat(s1.slice(multiPos1, pos(s1.slice(multiPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(multiPos1,)) + n,);
+                                    
+                                }
+                            }
+                            s1 = c1 + String(a * b) + c2
+                    
+                        } else if (count(s1.slice(1,), "+") + count(s1.slice(1,), "*") + count(s1.slice(1,), "-") + count(s1.slice(1,), "/")==1){
+                            multiPos = s1.indexOf("*");
+                            multiPos1 = multiPos+1;
+                            a = parseFloat(s1.slice(0, multiPos))
+                            b = parseFloat(s1.slice(multiPos1,))
+                            s1 = a*b
+                            break
+                        }
+                    } else if (s1[check(s1.slice(1,))+1]=="/"){
+                        if (count(s1, "+") + count(s1, "*") + count(s1, "-") + count(s1, "/")>1){
+                            delPos = s1.indexOf("/");
+                            delPos1 = delPos+1;
+                            if (s1.slice(1, delPos).indexOf("+") == -1 && s1.slice(1, delPos).indexOf("-") == -1){
+                                a = parseFloat(s1.slice(0, delPos));
+                                c1 = "";
+                                if (s1.slice(delPos1+1,).indexOf("+")==-1 && s1.slice(delPos1+1,).indexOf("/")==-1 && s1.slice(delPos1+1,).indexOf("*")==-1 && s1.slice(delPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(delPos1,))
+                                    c2 = ""
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(delPos1,).length;
+                                    b = parseFloat(s1.slice(delPos1, pos(s1.slice(delPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(delPos1,)) + n,);
+                                    
+                                }
+                            } else{
+                                a = parseFloat(s1.slice(backfind(s1.slice(0, delPos)) + 1, delPos));
+                                c1 = s1.slice(0, backfind(s1.slice(0, delPos-1)) + 1)
+                                
+                                if (s1.slice(delPos1+1,).indexOf("+")==-1 && s1.slice(delPos1+1,).indexOf("/")==-1 && s1.slice(delPos1+1,).indexOf("*")==-1 && s1.slice(delPos1+1,).indexOf("-")==-1 ){
+                                    b = parseFloat(s1.slice(delPos1,))
+                                    c2 = ""    
+                                    
+                                } else{
+                                    n = s1.length - s1.slice(delPos1,).length;
+                                    b = parseFloat(s1.slice(delPos1, pos(s1.slice(delPos1,)) + n));
+                                    c2 = s1.slice(pos(s1.slice(delPos1,)) + n,);
+                                    
+                                    
+                                }
+                            }
+                            s1 = c1 + String(a / b) + c2
+                    
+                        } else if (count(s1.slice(1,), "+") + count(s1.slice(1,), "*") + count(s1.slice(1,), "-") + count(s1.slice(1,), "/")==1){
+                            delPos = s1.indexOf("/");
+                            delPos1 = delPos+1;
+                            a = parseFloat(s1.slice(0, delPos))
+                            b = parseFloat(s1.slice(delPos1,))
+                            s1 = a/b
+                            break
+                        }
+                    } else if (s1[check(s1.slice(1,))+1]=="-"){
+                        if (count(s1.slice(1,), "+") + count(s1.slice(1,), "*") + count(s1.slice(1,), "-") + count(s1.slice(1,), "/")>1){
+                            minusPos = s1.slice(1,).indexOf("-")+1;
+                            minusPos1 = minusPos+1;
+                            a = parseFloat(s1.slice(0, minusPos));
+                            b = parseFloat(s1.slice(minusPos1, pos(s1.slice(minusPos1,)) + (s1.length - (s1.slice(minusPos1,)).length)));
+                            c = s1.slice(pos(s1.slice(minusPos1,)) + (s1.length - (s1.slice(minusPos1,)).length),);
+                            s1 = String(a-b) + c;
+                    
+                        } else if (count(s1.slice(1,), "+") + count(s1.slice(1,), "*") + count(s1.slice(1,), "-") + count(s1.slice(1,), "/")==1){
+                            minusPos = s1.slice(1,).indexOf("-")+1;
+                            minusPos1 = minusPos+1;
+                            a = parseFloat(s1.slice(0, minusPos))
+                            b = parseFloat(s1.slice(minusPos1,))
+                            s1 = a-b
+                            break
+                        }
+                    }
+                }
+            }
+        s = s0 + String(s1) + s2;
+        console.log(s)
+        }
+    
+    }
+
+
+
+
+
+    // основа
     while (s.length!=1){
         if (s[0]!="-"){
             if (s[check(s)]=="+"){
@@ -487,7 +779,7 @@ ButtonIs.onclick = function() {
                 }
             }
         }
-    }
+    } 
     document.querySelector('.TextBox').value = s;
 }
 //#endregion равно

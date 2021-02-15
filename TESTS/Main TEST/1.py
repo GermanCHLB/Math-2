@@ -169,6 +169,183 @@ def check(s):
         return min(posPlus, posMinus)
 def backfind(s):
     return max(s.rfind("+"), s.rfind("-"))
+#Делаю скобочки
+if s.find("(")!=-1:
+    while str(s).count("(")!=0:
+        s0=s[:s.find("(")]
+        s1=s[s.find("(")+1:s.find(")")]
+        s2=s[s.find(")")+1:]
+        while len(s) != 1:
+            if s1[0] != "-":
+
+                if s1[check(s1)] == "+":
+                    if s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") > 1:
+                        plusPos = s1.find("+")
+                        plusPos1 = plusPos + 1
+                        a = int(s1[0:plusPos])
+                        b = int(s1[plusPos1: pos(s1[plusPos1:]) + (len(s1) - len(s1[plusPos1:]))])
+                        c = s1[pos(s1[plusPos1:]) + (len(s1) - len(s1[plusPos1:])):]
+                        s1 = str(a + b) + c
+                    elif s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") == 1:
+                        plusPos = s1.find("+")
+                        plusPos1 = plusPos + 1
+                        a = int(s1[0:plusPos])
+                        b = int(s1[plusPos1:])
+                        s1 = a + b
+                        break
+
+                elif s1[check(s1)] == "*":
+                    if s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") > 1:
+                        MultiPos = s1.find("*")
+                        MultiPos1 = MultiPos + 1
+                        if s1[1:MultiPos].find("+") == -1 and s1[1:MultiPos].find("-") == -1:
+                            a = int(s1[0:MultiPos])
+                            c1 = ""
+                            if s1[MultiPos1 + 1:].find("+") == -1 and s1[MultiPos1 + 1:].find("*") == -1 and s1[
+                                                                                                           MultiPos1 + 1:].find(
+                                    "/") == -1 and s1[MultiPos1 + 1:].find("-") == -1:
+                                b = int(s1[MultiPos1:])
+                                c2 = ""
+                            else:
+                                n = len(s1) - len(s1[MultiPos1:])
+                                b = int(s1[MultiPos1:pos(s1[MultiPos1:]) + n])
+                                c2 = s1[pos(s1[MultiPos1:]) + n:]
+                        else:
+                            a = int(s1[backfind(s1[0:MultiPos]) + 1:MultiPos])
+                            c1 = s1[0:backfind(s1[0:MultiPos]) + 1]
+                            if s1[MultiPos1 + 1:].find("+") == -1 and s1[MultiPos1 + 1:].find("*") == -1 and s1[
+                                                                                                           MultiPos1 + 1:].find(
+                                    "/") == -1 and s1[MultiPos1 + 1:].find("-") == -1:
+                                b = int(s1[MultiPos1:])
+                                c2 = ""
+                            else:
+                                n = len(s1) - len(s1[MultiPos1:])
+                                b = int(s1[MultiPos1:pos(s1[MultiPos1:]) + n])
+                                c2 = s1[pos(s1[MultiPos1:]) + n:]
+                        s1 = c1 + str(a * b) + c2
+                    elif s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") == 1:
+                        MultiPos = s1.find("*")
+                        MultiPos1 = MultiPos + 1
+                        a = int(s1[0:MultiPos])
+                        b = int(s1[MultiPos1:])
+                        s1 = a * b
+                        break
+
+                elif s1[check(s1)] == "/":
+                    if s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") > 1:
+                        DelPos = s1.find("/")
+                        DelPos1 = DelPos + 1
+                        if s1[1:DelPos].find("+") == -1 and s1[1:DelPos].find("-") == -1:
+                            a = int(s1[0:DelPos])
+                            c1 = ""
+                            if s1[DelPos1 + 1:].find("+") == -1 and s1[DelPos1 + 1:].find("*") == -1 and s1[
+                                                                                                       DelPos1 + 1:].find(
+                                    "/") == -1 and s1[DelPos1 + 1:].find("-") == -1:
+                                b = int(s1[DelPos1:])
+                                c2 = ""
+                            else:
+                                n = len(s1) - len(s1[DelPos1:])
+                                b = int(s1[DelPos1:pos(s1[DelPos1:]) + n])
+                                c2 = s1[pos(s1[DelPos1:]) + n:]
+                        else:
+                            a = int(s1[backfind(s1[0:DelPos]) + 1:DelPos])
+                            c1 = s1[0:backfind(s1[0:DelPos]) + 1]
+                            if s1[DelPos1 + 1:].find("+") == -1 and s1[DelPos1 + 1:].find("*") == -1 and s1[DelPos1 + 1:].find("/") == -1 and s1[DelPos1 + 1:].find("-") == -1:
+                                b = int(s1[DelPos1:])
+                                c2 = ""
+                            else:
+                                n = len(s1) - len(s1[DelPos1:])
+                                b = int(s1[DelPos1:pos(s1[DelPos1:]) + n])
+                                c2 = s1[pos(s1[DelPos1:]) + n:]
+                        s1 = c1 + str(int(a / b)) + c2
+                    elif s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") == 1:
+                        DelPosPos = s1.find("/")
+                        DelPos1 = DelPos + 1
+                        a = int(s1[0:DelPos])
+                        b = int(s1[DelPos1:])
+                        s1 = int(a / b)
+                        break
+
+                elif s1[check(s1)] == "-":
+                    if s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") > 1:
+                        MinusPos = s1.find("-")
+                        MinusPos1 = MinusPos + 1
+                        a = int(s1[0:MinusPos])
+                        b = int(s1[MinusPos1: pos(s1[MinusPos1:]) + (len(s1) - len(s1[MinusPos1:]))])
+                        c = s1[pos(s1[MinusPos1:]) + (len(s1) - len(s1[MinusPos1:])):]
+                        s1 = str(a - b) + c
+                    elif s1.count("+") + s1.count("-") + s1.count("*") + s1.count("/") == 1:
+                        MinusPos = s1.find("-")
+                        MinusPos1 = MinusPos + 1
+                        a = int(s1[0:MinusPos])
+                        b = int(s1[MinusPos1:])
+                        s1 = a - b
+                        break
+            else:
+                if s1[check(s1[1:]) + 1] == "+":
+                    if s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") > 1:
+                        plusPos = s1.find("+")
+                        plusPos1 = plusPos + 1
+                        a = int(s1[0:plusPos])
+                        b = int(s1[plusPos1: pos(s1[plusPos1:]) + (len(s1) - len(s1[plusPos1:]))])
+                        c = s1[pos(s1[plusPos1:]) + (len(s1) - len(s1[plusPos1:])):]
+                        s1 = str(a + b) + c
+                    elif s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") == 1:
+                        plusPos = s1.find("+")
+                        plusPos1 = plusPos + 1
+                        a = int(s1[0:plusPos])
+                        b = int(s1[plusPos1:])
+                        s1 = a + b
+                        break
+
+                elif s1[check(s1[1:]) + 1] == "*":
+                    if s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") > 1:
+                        MultiPos = s1.find("*")
+                        MultiPos1 = MultiPos + 1
+                        a = int(s1[0:MultiPos])
+                        b = int(s1[MultiPos1: pos(s1[MultiPos1:]) + (len(s1) - len(s1[MultiPos1:]))])
+                        c = s1[pos(s1[MultiPos1:]) + (len(s1) - len(s1[MultiPos1:])):]
+                        s1 = str(a * b) + c
+                    elif s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") == 1:
+                        MultiPos = s1.find("*")
+                        MultiPos1 = MultiPos + 1
+                        a = int(s1[0:MultiPos])
+                        b = int(s1[MultiPos1:])
+                        s1 = a * b
+                        break
+
+                elif s1[check(s1[1:]) + 1] == "/":
+                    if s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") > 1:
+                        DelPos = s1.find("/")
+                        DelPos1 = DelPos + 1
+                        a = int(s1[0:DelPos])
+                        b = int(s1[DelPos1: pos(s1[DelPos1:]) + (len(s1) - len(s1[DelPos1:]))])
+                        c = s1[pos(s1[DelPos1:]) + (len(s1) - len(s1[DelPos1:])):]
+                        s1 = str(int(a / b)) + c
+                    elif s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") == 1:
+                        DelPos = s1.find("/")
+                        DelPos1 = DelPos + 1
+                        a = int(s1[0:DelPos])
+                        b = int(s1[DelPos1:])
+                        s1 = int(a / b)
+                        break
+
+                elif s1[check(s1[1:]) + 1] == "-":
+                    if s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") > 1:
+                        MinusPos = s1[1:].find("-") + 1
+                        MinusPos1 = MinusPos + 1
+                        a = int(s1[0:MinusPos])
+                        b = int(s1[MinusPos1: pos(s1[MinusPos1:]) + (len(s1) - len(s1[MinusPos1:]))])
+                        c = s1[pos(s1[MinusPos1:]) + (len(s1) - len(s1[MinusPos1:])):]
+                        s1 = str(a - b) + c
+                    elif s1[1:].count("+") + s1[1:].count("-") + s1[1:].count("*") + s1[1:].count("/") == 1:
+                        MinusPos = s1[1:].find("-") + 1
+                        MinusPos1 = MinusPos + 1
+                        a = int(s1[0:MinusPos])
+                        b = int(s1[MinusPos1:])
+                        s1 = a - b
+                        break
+        s=s0+str(s1)+s2
 while len(s)!=1:
     if s[0]!="-":
 
